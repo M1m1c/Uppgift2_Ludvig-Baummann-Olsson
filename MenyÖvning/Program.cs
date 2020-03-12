@@ -17,8 +17,8 @@ namespace MenyÖvning
                     "0 to exit aplication\n" +
                     "1 to buy tickets\n" +
                     "2 to write something that will repeat\n" +
-                    "3 to write a sentence with a minimum of three words");        
-                
+                    "3 to write a sentence with a minimum of three words");
+                int g = 0;
 
                 switch (GetIntFromString(GetInputString()))
                 {
