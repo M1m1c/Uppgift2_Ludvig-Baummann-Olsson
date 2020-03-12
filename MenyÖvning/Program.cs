@@ -19,22 +19,19 @@ namespace MenyÖvning
                     "2 to write something that will repeat\n" +
                     "3 to write a sentence with a minimum of three words");
                 
-
                 switch (GetIntFromString(GetInputString()))
                 {
                     case 0:
                         RunProgram = false;
                         break;
                     case 1:
-                        BuyTickets();
+                        BuyTickets(GetIntLargerThanZero("Please enter the amount of people attending"));
                         break;
                     case 2:
                         MenyÖvning.TextRepeater.RepeatText();
-                        //RepeatText();
                         break;
                     case 3:
                         MenyÖvning.ThreeWord.WriteThreeWords();
-                        //WriteThreeWords();
                         break;
                     default:
                         Console.WriteLine("\nsorry, that was not a valid selection. Please try again.\n");
@@ -43,30 +40,18 @@ namespace MenyÖvning
             }
         }
 
-        private static void BuyTickets()
+        private static void BuyTickets(int amountOfPeople)
         {
             Party PeopleAttending = new Party();
            
-            int amountOfPeople = DetermineAmountOfPeople();
+            //int amountOfPeople = 
             for (int i = 0; i < amountOfPeople; i++)
             {
-                PeopleAttending.AddPersonToParty(CreatePerson(GetAgeInput()));
+                PeopleAttending.AddPersonToParty(CreatePerson(GetIntLargerThanZero("Please enter your age to get your price class")));
                 
             }
-            PeopleAttending.UpdateParty();
+            
             ResultTotalPrice = PrintPeople(PeopleAttending);
-        }
-
-        private static int DetermineAmountOfPeople()
-        {
-            int amountOfPeople = 0;
-
-            while (amountOfPeople <= 0) 
-            {
-                Console.WriteLine("Please enter the amount of people attending");
-                amountOfPeople = GetIntFromString(GetInputString());
-            }
-            return amountOfPeople;
         }
 
         private static int PrintPeople(Party partyToPrint)
@@ -105,18 +90,17 @@ namespace MenyÖvning
             return inputInt;
         }
 
-        private static int GetAgeInput()
+        private static int GetIntLargerThanZero(string message)
         {
-            int age = 0;
+            int tempInt = 0;
 
-            while (age <= 0)
+            while (tempInt <= 0)
             {
-                Console.WriteLine("Please enter your age to get your price class");
-                age = GetIntFromString(GetInputString());
+                Console.WriteLine(message);
+                tempInt = GetIntFromString(GetInputString());
             }
 
-            return age;
-            
+            return tempInt;           
         }
 
         private static void DeterminePrice(int age, out AgeClassification classification, out int price)

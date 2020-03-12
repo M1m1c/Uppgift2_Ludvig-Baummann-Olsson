@@ -6,12 +6,19 @@ using System.Text;
 namespace TEST
 {
     [TestClass]
-    class TicketTests
+    public class TicketTests
     {
         [TestMethod]
         public void BuyTicket()
         {
-            MenyÖvning.Program Test = new MenyÖvning.Program();
+            MenyÖvning.Party TempParty = new MenyÖvning.Party();
+
+            TempParty.AddPersonToParty(new MenyÖvning.Person(MenyÖvning.AgeClassification.adult, 120));
+            TempParty.AddPersonToParty(new MenyÖvning.Person(MenyÖvning.AgeClassification.child, 80));
+            TempParty.UpdateParty();
+
+            Assert.AreEqual(200, TempParty.totalPrice);
+            
             //Test
         }
     }

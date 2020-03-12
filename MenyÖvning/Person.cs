@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MenyÖvning
 {
-    class Person
+    public class Person
     {
        public Person(AgeClassification inClassification, int inPrice)
         {

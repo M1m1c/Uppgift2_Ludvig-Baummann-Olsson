@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MenyÖvning
 {
-    class Party
+    public class Party
     {
         private List<Person> people = new List<Person>();
         public int children { get; set; }
@@ -19,6 +19,7 @@ namespace MenyÖvning
 
         public Person[] GetPeople()
         {
+            UpdateParty();
             return people.ToArray();
         }
 
