@@ -47,13 +47,19 @@ namespace MenyÖvning
             //int amountOfPeople = 
             for (int i = 0; i < amountOfPeople; i++)
             {
-                PeopleAttending.AddPersonToParty(CreatePerson(GetIntLargerThanZero("Please enter your age to get your price class")));
-                
+                PeopleAttending.AddPersonToParty(CreatePerson(GetIntLargerThanZero("Please enter your age to get your price class")));                
             }
             
             ResultTotalPrice = PrintPeople(PeopleAttending);
         }
-
+        public static Person CreatePerson(int age)
+        {
+            AgeClassification tempClassification;
+            int tempInt;
+            DeterminePrice(age, out tempClassification, out tempInt);
+            Person TempPerson = new Person(tempClassification, tempInt);
+            return TempPerson;
+        }
         private static int PrintPeople(Party partyToPrint)
         {
            
@@ -66,20 +72,12 @@ namespace MenyÖvning
 
             return partyToPrint.totalPrice;
         }
-
-        private static Person CreatePerson(int age)
-        {
-            AgeClassification tempClassification;
-            int tempInt;
-            DeterminePrice(age, out tempClassification, out tempInt);
-            Person TempPerson = new Person(tempClassification, tempInt);
-            return TempPerson;           
-        }
-        
+       
         private static string GetInputString()
         {
             return Console.ReadLine();
         }
+
         private static int GetIntFromString(string input)
         {
             int inputInt = 0;
@@ -103,7 +101,7 @@ namespace MenyÖvning
             return tempInt;           
         }
 
-        private static void DeterminePrice(int age, out AgeClassification classification, out int price)
+        public static void DeterminePrice(int age, out AgeClassification classification, out int price)
         {
             if (age < 5)
             {
